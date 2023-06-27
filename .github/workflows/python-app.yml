@@ -66,7 +66,6 @@ jobs:
         ssh deploy_ec2 "git clone git@github.com:aliarham11/pacmann_smoke_detector.git temp/"
         ssh deploy_ec2 "rsync -a ./temp/ ./ml_process_demo/"
         ssh deploy_ec2 "rm -rf temp/"
-        ssh deploy_ec2 "cd ml_process_demo/ && git lfs pull"
         ssh deploy_ec2 "cd ml_process_demo/ && sudo docker compose rm -sf api && sudo docker compose rm -sf streamlit"
         ssh deploy_ec2 "cd ml_process_demo/ || sudo docker rmi aliarham018/ml_process_api || sudo docker rmi aliarham018/ml_process_streamlit"
         ssh deploy_ec2 "cd ml_process_demo/ && sudo docker compose pull && sudo docker compose up -d"
