@@ -1,5 +1,5 @@
-import data_pipeline
-import util as utils
+import src.data_pipeline as data_pipeline
+import src.util as utils
 import pandas as pd
 import numpy as np
 

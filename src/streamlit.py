@@ -4,8 +4,8 @@ import joblib
 from PIL import Image
 
 # Load and set images in the first place
-header_images = Image.open('assets/banner.png')
-st.image(header_images)
+# header_images = Image.open('assets/banner.png')
+# st.image(header_images)
 
 # Add some information about the service
 st.title("Smoke Prediction")
@@ -89,7 +89,7 @@ with st.form(key = "air_data_form"):
 
         # Create loading animation while predicting
         with st.spinner("Sending data to prediction server ..."):
-            res = requests.post("http://api_backend:8080/predict", json = raw_data).json()
+            res = requests.post("http://localhost:8080/predict", json = raw_data).json()
             
         # Parse the prediction result
         if res["error_msg"] != "":

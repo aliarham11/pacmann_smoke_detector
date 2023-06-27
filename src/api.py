@@ -3,14 +3,13 @@ from pydantic import BaseModel
 import uvicorn
 import pandas as pd
 import numpy as np
-import util as utils
-import data_pipeline as data_pipeline
-import preprocessing as preprocessing
+import src.util as utils
+import src.data_pipeline as data_pipeline
 
 config = utils.load_config()
 model_data = utils.pickle_load(config["production_model_path"])
 
-class api_data(BaseModel):
+class ApiData(BaseModel):
     Temperature : float
     Humidity : float
     Pressure : float
@@ -26,8 +25,8 @@ app = FastAPI()
 def home():
     return "Hello, FastAPI up!"
 
-@app.post("/predict/")
-def predict(data: api_data):    
+@app.post("/predict")
+def predict(data: ApiData):    
     # Convert data api to dataframe
     data = pd.DataFrame(data).set_index(0).T.reset_index(drop = True)  # type: ignore
     data.columns = config["predictors"]
@@ -57,4 +56,4 @@ def predict(data: api_data):
     return {"res" : y_pred, "error_msg": ""}
 
 if __name__ == "__main__":
-    uvicorn.run("api:app", host = "0.0.0.0", port = 8080)
+    uvicorn.run("src.api:app", host = "0.0.0.0", port = 8080)

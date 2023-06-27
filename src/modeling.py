@@ -1,4 +1,4 @@
-import util as utils
+import src.util as utils
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import classification_report
 

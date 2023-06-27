@@ -1,5 +1,5 @@
 import pandas as pd
-import util as utils
+import src.util as utils
 from imblearn.under_sampling import RandomUnderSampler
 
 def load_dataset(config_data: dict):
