@@ -63,5 +63,5 @@ jobs:
     - name: Deploy to EC2
       run: |
         ssh deploy_ec2 "mkdir temp/"
-        ssh deploy_ec2 "git clone git@github.com:aliarham11/pacmann_smoke_detector.git temp/"
+        ssh deploy_ec2 "git clone -b master git@github.com:aliarham11/pacmann_smoke_detector.git temp/"
         ssh deploy_ec2 "cd temp/ && sudo docker compose pull && sudo docker compose up -d"
